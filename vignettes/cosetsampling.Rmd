@@ -1,0 +1,112 @@
+---
+title: "Exactly balanced sampling with coset designs"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Exactly balanced sampling with coset designs}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(collapse = TRUE, comment = "#>")
+```
+
+```{r}
+library(cosetsampling)
+```
+
+Coset designs select samples that are exactly balanced on several overlapping stratifications at once, when
+the units of the frame are indexed by a vector space over a prime field and the stratifications are coset
+partitions: margins and cross-classifications of a complete factorial frame, or rows, columns and wrapped
+diagonals of a square grid of prime side. A coset design draws a random admissible direction and a random
+set of cosets of it, so its first- and second-order inclusion probabilities, and the exact variance of the
+sample mean, are available in closed form.
+
+## A grid balanced on rows, columns and both wrapped diagonals
+
+The data set `volcano` gives elevations on a grid; its rows 14 to 74 form a $61 \times 61$ block, and 61 is
+prime. Unit $(i, j)$ is unit number $61 i + j + 1$ of the frame.
+
+```{r}
+g <- grid_frame(61)
+y <- as.vector(t(volcano[14:74, ]))
+S4 <- strata_grid(g, c("rows", "columns", "antidiagonals", "diagonals"))
+main_effect_count(g, S4)
+```
+
+Lines in any of the $62 - 4 = 58$ other directions meet every row, column and diagonal exactly once. The
+uniform mixture over these directions is an equal-weight design: it spreads the variance weight evenly over
+the frequencies left free by balance, which makes it minimax over responses with bounded residual variance.
+
+```{r}
+d1 <- coset_design(g, S4, h = 1)          # samples of 61 units
+d3 <- coset_design(g, S4, h = 1, r = 3)   # unions of 3 lines, 183 units
+d1
+is_equal_weight(d1)
+design_effect(d1, y)
+s <- draw_sample(d3)
+balance_check(g, S4, s$units)$exact
+```
+
+With three cosets the random-group estimator is unbiased, and the regression estimator on the main-effects
+model is more stable:
+
+```{r}
+random_group_variance(s, y, d3)$variance
+regression_variance(s, y, g, S4)$variance
+design_variance(d3, y)
+```
+
+Balancing on fewer stratifications gives the design effects of equal-weight designs for rows only, rows and
+columns, and so on:
+
+```{r}
+fam <- c("rows", "columns", "antidiagonals", "diagonals")
+sapply(1:4, function(j) design_effect(coset_design(g, strata_grid(g, fam[1:j]), h = 1), y))
+```
+
+## A complete factorial frame
+
+A complete factorial with seven binary variables has $2^7 = 128$ units. With samples of four units balanced
+on every variable there are 364 admissible directions, but no mixture of them is an equal-weight design; the
+minimax mixture (which needs the package lpSolve) has a worst case 7.5% above the bound.
+
+```{r}
+f <- coset_frame(2, 7)
+S <- strata_margins(f)
+length(admissible_directions(f, S, h = 2))
+uniform <- coset_design(f, S, h = 2)
+worst_case_factor(uniform)
+if (requireNamespace("lpSolve", quietly = TRUE)) {
+  mm <- minimax_mixture(f, S, h = 2)
+  mm$ratio
+}
+```
+
+With eight units an equal-weight design exists, and so does one for the two-variable margins with 16 units.
+For larger frames the directions can be drawn by rejection without listing them:
+
+```{r}
+S2 <- strata_margins(f, order = 2)
+dr <- coset_design(f, S2, h = 4, nu = "rejection")
+s <- draw_sample(dr)
+balance_check(f, S2, s$units)$exact
+```
+
+`factorial_frame()` maps a data frame with one row per combination of categories to the frame.
+
+## Placing other designs on the same scale
+
+Samples from any design with inclusion probabilities $k/N$ can be evaluated by their main-effect weight share
+$\tau$, which is zero exactly for exactly balanced designs, and by the lower bound on the worst-case variance
+when main effects are bounded by $C$ times the residual variance. Here for simple random sampling, which has
+$\tau = d_{\mathcal S}/(N - 1)$:
+
+```{r}
+set.seed(1)
+srs <- replicate(2000, sample.int(g$N, 61), simplify = FALSE)
+main_effect_share(g, S4, srs, k = 61)
+worst_case_bound(g, S4, srs, k = 61, C = 1)
+```
+
+The same functions apply to samples from the cube method or other balancing algorithms.

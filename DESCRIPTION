@@ -1,0 +1,27 @@
+Package: cosetsampling
+Type: Package
+Title: Exactly Balanced Sampling with Affine Flats and Coset Designs
+Version: 0.1.0
+Authors@R: person("Mohamed", "Laib", role = c("aut", "cre"),
+    email = "24648381+mlaib@users.noreply.github.com")
+Description: Exactly balanced sampling designs for frames whose units are indexed by
+    a vector space over a prime field, such as complete factorial frames and square
+    grids of prime side, stratified by cosets of subspaces (margins, cross-classifications,
+    rows, columns and wrapped diagonals). A coset design draws a random admissible
+    direction and a random set of cosets of it; every sample is exactly balanced on all
+    the stratifications. The package lists and samples admissible directions, builds coset
+    designs (uniform, user-given or minimax mixtures of directions), draws samples, and
+    gives first- and second-order inclusion probabilities, spectral weights, exact
+    variances and design effects, worst-case factors, and the random-group and regression
+    variance estimators. Diagnostics measure the balance and the main-effect weight share
+    of samples from any design, such as the cube method, and the corresponding lower
+    bound on the worst-case variance.
+License: file LICENSE
+Encoding: UTF-8
+Depends: R (>= 4.0.0)
+Imports: stats, utils
+Suggests: lpSolve, testthat (>= 3.0.0), knitr, rmarkdown
+VignetteBuilder: knitr
+Config/testthat/edition: 3
+Roxygen: list(markdown = TRUE)
+Config/roxygen2/version: 8.0.0
