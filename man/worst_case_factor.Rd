@@ -16,7 +16,8 @@ is_equal_weight(design, tol = 1e-10)
 }
 \description{
 The worst-case variance of an exactly balanced translation-invariant design over the responses whose
-residual variance from the main-effects model is at most \code{sigma^2} is \verb{sigma^2 max_\{R_S\} w(u)}. The
-worst-case factor divides it by the lower bound \verb{(N/k - 1)/|R_S|}, which equal-weight designs attain; it is
+residual variance from the main-effects model is at most \code{sigma^2} is
+\eqn{\sigma^2 \max_{u \in R_S} w(u)}{sigma^2 max_{R_S} w(u)}. The worst-case factor divides it by the lower
+bound \eqn{(N/k - 1)/|R_S|}{(N/k - 1)/|R_S|}, which equal-weight designs attain; it is
 1 for them.
 }

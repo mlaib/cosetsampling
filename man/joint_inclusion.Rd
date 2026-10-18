@@ -17,6 +17,7 @@ difference \code{z}, in unit order (the first entry, \code{z = 0}, is \code{k/N}
 }
 \description{
 Every coset design has first-order inclusion probabilities \code{k/N}. The second-order inclusion probability
-of two units depends only on their difference \code{z}: \verb{pi(z) = (k/N) \{rho(z) + (1 - rho(z)) (r - 1)/(Q - 1)\}},
+of two units depends only on their difference \code{z}:
+\eqn{\pi(z) = (k/N) \{\rho(z) + (1 - \rho(z)) (r - 1)/(Q - 1)\}}{pi(z) = (k/N) {rho(z) + (1 - rho(z)) (r - 1)/(Q - 1)}},
 where \code{rho(z)} is the probability that \code{z} lies in the random direction.
 }

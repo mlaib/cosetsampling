@@ -12,7 +12,8 @@ regression_variance(sample, y, frame, strata, level = 0.95)
 \arguments{
 \item{sample}{A sample drawn by \code{\link[=draw_sample]{draw_sample()}}.}
 
-\item{y}{The response of the whole frame, or of the selected units in the order of \code{sample$units}.}
+\item{y}{The response of the whole frame, or of the selected units, in the order of the units of
+\code{sample}.}
 
 \item{design}{The \code{coset_design} of the sample.}
 

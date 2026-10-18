@@ -19,7 +19,8 @@
 #' @examples
 #' g <- grid_frame(7)
 #' S <- strata_grid(g, c("rows", "columns", "antidiagonals"))
-#' d <- coset_design(g, S, h = 1)      # equal-weight design: uniform over the 5 other line directions
+#' # equal-weight design: uniform over the 5 other line directions
+#' d <- coset_design(g, S, h = 1)
 #' d
 #' s <- draw_sample(d)
 #' balance_check(g, S, s$units)$exact
@@ -82,7 +83,8 @@ draw_sample <- function(design, n = 1) {
 #' Inclusion probabilities
 #'
 #' Every coset design has first-order inclusion probabilities `k/N`. The second-order inclusion probability
-#' of two units depends only on their difference `z`: `pi(z) = (k/N) {rho(z) + (1 - rho(z)) (r - 1)/(Q - 1)}`,
+#' of two units depends only on their difference `z`:
+#' \eqn{\pi(z) = (k/N) \{\rho(z) + (1 - \rho(z)) (r - 1)/(Q - 1)\}}{pi(z) = (k/N) {rho(z) + (1 - rho(z)) (r - 1)/(Q - 1)}},
 #' where `rho(z)` is the probability that `z` lies in the random direction.
 #' @param design A `coset_design` with listed directions.
 #' @param matrix If `TRUE`, the `N x N` matrix of joint inclusion probabilities; otherwise `pi(z)` for every
@@ -165,8 +167,9 @@ design_effect <- function(design, y) design_variance(design, y) / srs_variance(y
 #' Worst-case factor
 #'
 #' The worst-case variance of an exactly balanced translation-invariant design over the responses whose
-#' residual variance from the main-effects model is at most `sigma^2` is `sigma^2 max_{R_S} w(u)`. The
-#' worst-case factor divides it by the lower bound `(N/k - 1)/|R_S|`, which equal-weight designs attain; it is
+#' residual variance from the main-effects model is at most `sigma^2` is
+#' \eqn{\sigma^2 \max_{u \in R_S} w(u)}{sigma^2 max_{R_S} w(u)}. The worst-case factor divides it by the lower
+#' bound \eqn{(N/k - 1)/|R_S|}{(N/k - 1)/|R_S|}, which equal-weight designs attain; it is
 #' 1 for them.
 #' @param design A `coset_design` with listed directions.
 #' @param tol Tolerance for `is_equal_weight()`.

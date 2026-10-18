@@ -9,7 +9,8 @@
 #' fit, on the sample, of the main-effects model of the stratifications, with the Student interval on
 #' `k - rank` degrees of freedom. It is more stable, but not unbiased in general.
 #' @param sample A sample drawn by [draw_sample()].
-#' @param y The response of the whole frame, or of the selected units in the order of `sample$units`.
+#' @param y The response of the whole frame, or of the selected units, in the order of the units of
+#'   `sample`.
 #' @param design The `coset_design` of the sample.
 #' @param frame,strata The frame and stratifications.
 #' @param level The confidence level.

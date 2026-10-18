@@ -21,8 +21,10 @@ balance_check <- function(frame, strata, units) {
 
 #' Main-effect weight of samples
 #'
-#' The main-effect weight of a sample is `t_M(s) = sum_{u in M_S} |eta_s(u)|^2`, with
-#' `eta_s(u) = k^-1 sum_{x in s} exp(2 pi i u.x/q)` and `k` the target sample size; it is zero exactly when the
+#' The main-effect weight of a sample is
+#' \eqn{t_M(s) = \sum_{u \in M_S} |\eta_s(u)|^2}{t_M(s) = sum_{u in M_S} |eta_s(u)|^2}, with
+#' \eqn{\eta_s(u) = k^{-1} \sum_{x \in s} \exp(2 \pi i \, u \cdot x / q)}{eta_s(u) = k^-1 sum_{x in s} exp(2 pi i u.x/q)}
+#' and `k` the target sample size; it is zero exactly when the
 #' sample is balanced on every stratification. Its mean over the samples of a design, divided by `N/k - 1`, is
 #' the main-effect weight share `tau` of the design. Samples may come from any design, for instance the cube
 #' method.

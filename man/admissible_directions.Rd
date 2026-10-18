@@ -37,7 +37,7 @@ dimension \code{m - h} for flats of dimension \code{h} (size \code{q^h}).
 }
 \details{
 \code{admissible_directions()} lists every admissible direction by enumerating the subspaces of dimension
-\code{m - h}; their number grows like \code{q^(h (m - h))}, so this is for moderate frames. \code{sample_direction()}
+\code{m - h}; their number grows like \eqn{q^{h(m - h)}}{q^(h (m - h))}, so this is for moderate frames. \code{sample_direction()}
 draws a uniform admissible direction by rejection, without listing them. \code{is_admissible()} checks one
 direction.
 }

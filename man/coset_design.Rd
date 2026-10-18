@@ -33,7 +33,8 @@ stratification for which the directions are admissible.
 \examples{
 g <- grid_frame(7)
 S <- strata_grid(g, c("rows", "columns", "antidiagonals"))
-d <- coset_design(g, S, h = 1)      # equal-weight design: uniform over the 5 other line directions
+# equal-weight design: uniform over the 5 other line directions
+d <- coset_design(g, S, h = 1)
 d
 s <- draw_sample(d)
 balance_check(g, S, s$units)$exact

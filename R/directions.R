@@ -6,7 +6,7 @@
 #' dimension `m - h` for flats of dimension `h` (size `q^h`).
 #'
 #' `admissible_directions()` lists every admissible direction by enumerating the subspaces of dimension
-#' `m - h`; their number grows like `q^(h (m - h))`, so this is for moderate frames. `sample_direction()`
+#' `m - h`; their number grows like \eqn{q^{h(m - h)}}{q^(h (m - h))}, so this is for moderate frames. `sample_direction()`
 #' draws a uniform admissible direction by rejection, without listing them. `is_admissible()` checks one
 #' direction.
 #'
