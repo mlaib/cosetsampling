@@ -3,7 +3,7 @@ Type: Package
 Title: Exactly Balanced Sampling with Affine Flats and Coset Designs
 Version: 0.1.0
 Authors@R: person("Mohamed", "Laib", role = c("aut", "cre"),
-    email = "24648381+mlaib@users.noreply.github.com")
+    email = "laib.med@gmail.com")
 Description: Exactly balanced sampling designs for frames whose units are indexed by
     a vector space over a prime field, such as complete factorial frames and square
     grids of prime side, stratified by cosets of subspaces (margins, cross-classifications,

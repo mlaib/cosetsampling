@@ -18,6 +18,9 @@ stratifications at once, with closed-form first- and second-order inclusion prob
 The theory is in the manuscript *Exactly balanced sampling on overlapping stratifications with affine flats*
 (M. Laib). The code that reproduces every result of the manuscript is in a separate repository.
 
+Author and maintainer: Mohamed Laib, Luxembourg Institute of Science and Technology (LIST).
+Contact: laib.med@gmail.com, mohamed.laib@list.lu.
+
 ```r
 library(cosetsampling)
 g <- grid_frame(61)
