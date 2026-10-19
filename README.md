@@ -31,4 +31,4 @@ design_effect(d, y)
 draw_sample(d)$units
 ```
 
-Status: development version; the licence has not been chosen yet.
+Status: development version. Licence: GPL (>= 3); see LICENSE.md.

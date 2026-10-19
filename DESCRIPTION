@@ -16,7 +16,7 @@ Description: Exactly balanced sampling designs for frames whose units are indexe
     variance estimators. Diagnostics measure the balance and the main-effect weight share
     of samples from any design, such as the cube method, and the corresponding lower
     bound on the worst-case variance.
-License: file LICENSE
+License: GPL (>= 3)
 Encoding: UTF-8
 Depends: R (>= 4.0.0)
 Imports: stats, utils
